@@ -1,0 +1,187 @@
+<mvc:View
+    controllerName="fiori.chart.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:viz.data="sap.viz.ui5.data"
+>
+    <Page
+        id="page"
+        title="{i18n>title}"
+        class="sapUiResponsiveContentPadding"
+    >
+        <VBox
+            class="sapUiResponsiveContentPadding"
+            width="100%"
+        >
+            <Panel
+                headerText="Monthly Sales (Line Chart)"
+                class="sapUiResponsiveContentPadding"
+            >
+                <content>
+                    <viz:VizFrame
+                        id="vfLine"
+                        vizType="line"
+                        width="100%"
+                        height="320px"
+                        uiConfig='{ "applicationSet":"fiori" }'
+                        vizProperties='{
+                                "plotArea": { "dataLabel": { "visible": true }},
+                                "legend": { "visible": true },
+                                "title": { "visible": true, "text": "Sales Trend" },
+                                "categoryAxis": { "title": { "visible": true, "text":"Month" }},
+                                "valueAxis": { "title": { "visible": true, "text":"Sales" }}
+                            }'
+                    >
+                        <viz:dataset>
+                            <viz.data:FlattenedDataset
+                                data="{chartModel>/MonthlySales}"
+                            >
+                                <viz.data:dimensions>
+                                    <viz.data:DimensionDefinition
+                                        name="Month"
+                                        value="{chartModel>Month}"
+                                    />
+                                </viz.data:dimensions>
+                                <viz.data:measures>
+                                    <viz.data:MeasureDefinition
+                                        name="Sales"
+                                        value="{chartModel>Sales}"
+                                    />
+                                    <viz.data:MeasureDefinition
+                                        name="Profit"
+                                        value="{chartModel>Profit}"
+                                    />
+                                </viz.data:measures>
+                            </viz.data:FlattenedDataset>
+                        </viz:dataset>
+
+                        <viz:feeds>
+                            <viz.feeds:FeedItem
+                                uid="valueAxis"
+                                type="Measure"
+                                values="Sales,Profit"
+                            />
+                            <viz.feeds:FeedItem
+                                uid="categoryAxis"
+                                type="Dimension"
+                                values="Month"
+                            />
+                        </viz:feeds>
+                    </viz:VizFrame>
+                </content>
+            </Panel>
+
+            <Panel
+                headerText="Monthly Sales (Column Chart)"
+                class="sapUiResponsiveContentPadding"
+            >
+                <content>
+                    <viz:VizFrame
+                        id="vfColumn"
+                        vizType="column"
+                        width="100%"
+                        height="320px"
+                        uiConfig='{ "applicationSet":"fiori" }'
+                        vizProperties='{
+                                "plotArea": { "dataLabel": { "visible": true }},
+                                "legend": { "visible": true },
+                                "title": { "visible": true, "text": "Monthly Sales and Profit" },
+                                "categoryAxis": { "title": { "visible": true, "text":"Month" }},
+                                "valueAxis": { "title": { "visible": true, "text":"Amount" }}
+                            }'
+                    >
+                        <viz:dataset>
+                            <viz.data:FlattenedDataset
+                                data="{chartModel>/MonthlySales}"
+                            >
+                                <viz.data:dimensions>
+                                    <viz.data:DimensionDefinition
+                                        name="Month"
+                                        value="{chartModel>Month}"
+                                    />
+                                </viz.data:dimensions>
+                                <viz.data:measures>
+                                    <viz.data:MeasureDefinition
+                                        name="Sales"
+                                        value="{chartModel>Sales}"
+                                    />
+                                    <viz.data:MeasureDefinition
+                                        name="Profit"
+                                        value="{chartModel>Profit}"
+                                    />
+                                </viz.data:measures>
+                            </viz.data:FlattenedDataset>
+                        </viz:dataset>
+
+                        <viz:feeds>
+                            <viz.feeds:FeedItem
+                                uid="valueAxis"
+                                type="Measure"
+                                values="Sales,Profit"
+                            />
+                            <viz.feeds:FeedItem
+                                uid="categoryAxis"
+                                type="Dimension"
+                                values="Month"
+                            />
+                        </viz:feeds>
+                    </viz:VizFrame>
+                </content>
+            </Panel>
+
+            <Panel
+                headerText="Monthly Sales (Donut Chart)"
+                class="sapUiResponsiveContentPadding"
+            >
+                <content>
+                    <viz:VizFrame
+                        id="vfDonut"
+                        vizType="donut"
+                        width="100%"
+                        height="320px"
+                        uiConfig='{ "applicationSet":"fiori" }'
+                        vizProperties='{
+                                "plotArea": { "dataLabel": { "visible": true }},
+                                "legend": { "visible": true },
+                                "title": { "visible": true, "text": "Product Share" }
+                            }'
+                    >
+                        <viz:dataset>
+                            <viz.data:FlattenedDataset
+                                data="{chartModel>/ProductShares}"
+                            >
+                                <viz.data:dimensions>
+                                    <viz.data:DimensionDefinition
+                                        name="Product"
+                                        value="{chartModel>Product}"
+                                    />
+                                </viz.data:dimensions>
+                                <viz.data:measures>
+                                    <viz.data:MeasureDefinition
+                                        name="Share"
+                                        value="{chartModel>Share}"
+                                    />
+                                </viz.data:measures>
+                            </viz.data:FlattenedDataset>
+                        </viz:dataset>
+
+                        <viz:feeds>
+                            <viz.feeds:FeedItem
+                                uid="size"
+                                type="Measure"
+                                values="Share"
+                            />
+                            <viz.feeds:FeedItem
+                                uid="color"
+                                type="Dimension"
+                                values="Product"
+                            />
+                        </viz:feeds>
+                    </viz:VizFrame>
+                </content>
+            </Panel>
+        </VBox>
+    </Page>
+</mvc:View>

@@ -1,0 +1,30 @@
+{
+  "MonthlySales": [
+    { "Month": "Jan", "Sales": 120000, "Profit": 24000 },
+    { "Month": "Feb", "Sales": 135000, "Profit": 27000 },
+    { "Month": "Mar", "Sales": 150000, "Profit": 32000 },
+    { "Month": "Apr", "Sales": 160000, "Profit": 35000 },
+    { "Month": "May", "Sales": 170000, "Profit": 36000 },
+    { "Month": "Jun", "Sales": 180000, "Profit": 38000 }
+  ],
+  "ProductShares": [
+    { "Product": "Alpha",   "Share": 32 },
+    { "Product": "Beta",    "Share": 24 },
+    { "Product": "Gamma",   "Share": 18 },
+    { "Product": "Delta",   "Share": 14 },
+    { "Product": "Epsilon", "Share": 12 }
+  ],
+  "RegionSales": [
+    { "Region": "Americas", "Sales": 210000 },
+    { "Region": "EMEA",     "Sales": 180000 },
+    { "Region": "APJ",      "Sales": 195000 },
+    { "Region": "ANZ",      "Sales": 130000 }
+  ],
+  "ScatterData": [
+    { "Product": "Alpha",   "Revenue": 200, "Cost": 120 },
+    { "Product": "Beta",    "Revenue": 160, "Cost": 90 },
+    { "Product": "Gamma",   "Revenue": 110, "Cost": 70 },
+    { "Product": "Delta",   "Revenue": 140, "Cost": 100 },
+    { "Product": "Epsilon", "Revenue": 180, "Cost": 130 }
+  ]
+}
