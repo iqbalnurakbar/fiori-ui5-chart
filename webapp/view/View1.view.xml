@@ -15,6 +15,7 @@
             class="sapUiResponsiveContentPadding"
             width="100%"
         >
+            <!-- LINE (time-series) -->
             <Panel
                 headerText="Monthly Sales (Line Chart)"
                 class="sapUiResponsiveContentPadding"
@@ -22,17 +23,16 @@
                 <content>
                     <viz:VizFrame
                         id="vfLine"
-                        vizType="line"
+                        vizType="timeseries_line"
                         width="100%"
-                        height="320px"
-                        uiConfig='{ "applicationSet":"fiori" }'
+                        uiConfig='{"applicationSet":"fiori"}'
                         vizProperties='{
-                                "plotArea": { "dataLabel": { "visible": true }},
-                                "legend": { "visible": true },
-                                "title": { "visible": true, "text": "Sales Trend" },
-                                "categoryAxis": { "title": { "visible": true, "text":"Month" }},
-                                "valueAxis": { "title": { "visible": true, "text":"Sales" }}
-                            }'
+                            "plotArea": { "dataLabel": { "visible": true } },
+                            "legend": { "visible": true },
+                            "title": { "visible": true, "text": "Sales Trend" },
+                            "timeAxis": { "title": { "visible": true, "text":"Date" } },
+                            "valueAxis": { "title": { "visible": true, "text":"Sales" } }
+                        }'
                     >
                         <viz:dataset>
                             <viz.data:FlattenedDataset
@@ -40,8 +40,9 @@
                             >
                                 <viz.data:dimensions>
                                     <viz.data:DimensionDefinition
-                                        name="Month"
-                                        value="{chartModel>Month}"
+                                        name="Date"
+                                        dataType="date"
+                                        value="{chartModel>Date}"
                                     />
                                 </viz.data:dimensions>
                                 <viz.data:measures>
@@ -64,15 +65,19 @@
                                 values="Sales,Profit"
                             />
                             <viz.feeds:FeedItem
-                                uid="categoryAxis"
+                                uid="timeAxis"
                                 type="Dimension"
-                                values="Month"
+                                values="Date"
                             />
                         </viz:feeds>
+                        <viz:dependents>
+                            <viz:Popover id="idPopOverLine" />
+                        </viz:dependents>
                     </viz:VizFrame>
                 </content>
             </Panel>
 
+            <!-- COLUMN (time-series) -->
             <Panel
                 headerText="Monthly Sales (Column Chart)"
                 class="sapUiResponsiveContentPadding"
@@ -80,17 +85,17 @@
                 <content>
                     <viz:VizFrame
                         id="vfColumn"
-                        vizType="column"
+                        vizType="timeseries_column"
                         width="100%"
                         height="320px"
-                        uiConfig='{ "applicationSet":"fiori" }'
+                        uiConfig='{"applicationSet":"fiori"}'
                         vizProperties='{
-                                "plotArea": { "dataLabel": { "visible": true }},
-                                "legend": { "visible": true },
-                                "title": { "visible": true, "text": "Monthly Sales and Profit" },
-                                "categoryAxis": { "title": { "visible": true, "text":"Month" }},
-                                "valueAxis": { "title": { "visible": true, "text":"Amount" }}
-                            }'
+                            "plotArea": { "dataLabel": { "visible": true } },
+                            "legend": { "visible": true },
+                            "title": { "visible": true, "text": "Monthly Sales and Profit" },
+                            "timeAxis": { "title": { "visible": true, "text":"Date" } },
+                            "valueAxis": { "title": { "visible": true, "text":"Amount" } }
+                        }'
                     >
                         <viz:dataset>
                             <viz.data:FlattenedDataset
@@ -98,8 +103,9 @@
                             >
                                 <viz.data:dimensions>
                                     <viz.data:DimensionDefinition
-                                        name="Month"
-                                        value="{chartModel>Month}"
+                                        name="Date"
+                                        dataType="date"
+                                        value="{chartModel>Date}"
                                     />
                                 </viz.data:dimensions>
                                 <viz.data:measures>
@@ -122,15 +128,20 @@
                                 values="Sales,Profit"
                             />
                             <viz.feeds:FeedItem
-                                uid="categoryAxis"
+                                uid="timeAxis"
                                 type="Dimension"
-                                values="Month"
+                                values="Date"
                             />
                         </viz:feeds>
+
+                        <viz:dependents>
+                            <viz:Popover id="idPopOverColumn" />
+                        </viz:dependents>
                     </viz:VizFrame>
                 </content>
             </Panel>
 
+            <!-- DONUT -->
             <Panel
                 headerText="Monthly Sales (Donut Chart)"
                 class="sapUiResponsiveContentPadding"
@@ -141,12 +152,12 @@
                         vizType="donut"
                         width="100%"
                         height="320px"
-                        uiConfig='{ "applicationSet":"fiori" }'
+                        uiConfig='{"applicationSet":"fiori"}'
                         vizProperties='{
-                                "plotArea": { "dataLabel": { "visible": true }},
-                                "legend": { "visible": true },
-                                "title": { "visible": true, "text": "Product Share" }
-                            }'
+              "plotArea": { "dataLabel": { "visible": true } },
+              "legend": { "visible": true },
+              "title": { "visible": true, "text": "Product Share" }
+            }'
                     >
                         <viz:dataset>
                             <viz.data:FlattenedDataset
@@ -179,6 +190,9 @@
                                 values="Product"
                             />
                         </viz:feeds>
+                        <viz:dependents>
+                            <viz:Popover id="idPopOverDonut" />
+                        </viz:dependents>
                     </viz:VizFrame>
                 </content>
             </Panel>
